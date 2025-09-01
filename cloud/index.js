@@ -89,6 +89,7 @@ app.get("/getnginx", (req, res) => {
 	if (!validateSignature(timestamp, signature)) {
 		res.status(400).send("Invalid request")
 	}
+
 	try {
 		var hash = crypto.createHash(hashAlgorithm).update(fs.readFileSync(nginxProperties)).digest("hex")
 		res.json({ hash })
