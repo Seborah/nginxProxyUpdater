@@ -6,7 +6,6 @@ const { hashAlgorithm, domain, keyFile } = require("./config.json")
 
 var privateKey = fs.readFileSync(keyFile, "utf8")
 
-console.log("Generated signature: " + signature.length)
 async function getIP() {
 	var req = await axios.get("https://api.ipify.org?format=json")
 	console.log(req.data.ip)
@@ -65,7 +64,7 @@ async function getNginxConfig() {
 	newConfig = await generateNginxConfig()
 	var localHash = crypto.createHash("sha512").update(newConfig).digest("hex")
 	try {
-		var serverHash = await axios.get(server + "/getnginx" + generateParams())
+		var serverHash = await axios.get(domain + "/getnginx" + generateParams())
 	} catch (error) {
 		console.error("Error getting server config hash")
 		process.exit(1)
@@ -76,7 +75,7 @@ async function getNginxConfig() {
 	if (localHash !== serverHash.data.hash) {
 		console.log("Config has changed, sending update request to the server...")
 		try {
-			await axios.post(server + "/updatenginx" + generateParams(), { config: newConfig })
+			await axios.post(domain + "/updatenginx" + generateParams(), { config: newConfig })
 			console.log("Update request sent successfully")
 		} catch (error) {
 			console.error("Error sending update request to the server: ", error)
