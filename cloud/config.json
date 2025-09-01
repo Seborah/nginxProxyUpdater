@@ -1,3 +1,5 @@
 {
-	"nginxProperties": "/etc/nginx/nginx.conf"
+	"nginxProperties": "/etc/nginx/nginx.conf",
+	"hashAlgorithm": "RSA-SHA512",
+	"keyFile": "/path/to/public_key.pem"
 }
