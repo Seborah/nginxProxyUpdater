@@ -1,5 +1,0 @@
-{
-	"domain": "example.com",
-	"hashAlgorithm": "RSA-SHA512",
-	"keyFile": "/path/to/private_key.pem"
-}

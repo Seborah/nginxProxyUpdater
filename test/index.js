@@ -32,7 +32,9 @@ function loadKeys() {
 
 	return { privateKey, publicKey }
 }
+generateKeys()
 
+process.exit(0)
 var { privateKey, publicKey } = loadKeys()
 
 // Generate the keys if they don't exist
