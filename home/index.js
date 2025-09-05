@@ -8,7 +8,7 @@ var privateKey = fs.readFileSync(keyFile, 'utf8')
 
 async function getIP() {
     var req = await axios.get('https://api.ipify.org?format=json')
-    console.log(req.data.ip)
+    return req.data.ip
 }
 async function generateNginxConfig() {
     try {
